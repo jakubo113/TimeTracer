@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(App());
 
@@ -83,9 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
         )
     ).toList();
 
+    DateTime now = DateTime.now();
+    String formattedDateTime = DateFormat.Hms().format(now);
+
     return Column(
       children: [
-        Text('Cas'),
+        Text(formattedDateTime),
         Expanded(child: ListView(children: listItems,))
       ],
     );
