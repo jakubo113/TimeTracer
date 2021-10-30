@@ -73,16 +73,16 @@ class _HomeScreenState extends State<HomeScreen> {
     //       );
     //     });
 
-    List<ListTile> listItems = activities.map((activity) =>
-        ListTile(
-          title: Text(activity.timeStamp.toString()),
-          subtitle: Text(activity.track),
-          onTap: () {
-            debugPrint("klikam");
-            alertDialog(context);
-          },
-        )
-    ).toList();
+    List<ListTile> listItems = activities
+        .map((activity) => ListTile(
+              title: Text(activity.timeStamp.toString()),
+              subtitle: Text(activity.track),
+              onTap: () {
+                debugPrint("klikam");
+                alertDialog(context);
+              },
+            ))
+        .toList();
 
     DateTime now = DateTime.now();
     String formattedDateTime = DateFormat.Hms().format(now);
@@ -90,14 +90,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         Text(formattedDateTime),
-        Expanded(child: ListView(children: listItems,))
+        Expanded(
+            child: ListView(
+          children: listItems,
+        ))
       ],
     );
   }
 
   void alertDialog(BuildContext context) {
     var alDialog = AlertDialog(
-      title: Text("data"),
+      title: Text('Uprava aktivity'),
+      content: Expanded(
+        child: Column(
+          children: [
+            TextFormField(
+              initialValue: 'Toto je form field',
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text('Ulozit'),
+            ),
+          ],
+        ),
+      ),
     );
     showDialog(
       context: context,
